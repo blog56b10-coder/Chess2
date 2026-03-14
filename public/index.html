@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>CHESS</h1>
+
+  <!-- ── Lobby ── -->
+  <div id="lobby">
+    <h2>Choose a mode</h2>
+
+    <button class="btn btn-primary" id="btn-create">Create online game</button>
+
+    <div id="join-area">
+      <input id="join-input" type="text" maxlength="6" placeholder="GAME CODE">
+      <button class="btn btn-secondary" id="btn-join">Join</button>
+    </div>
+
+    <button class="btn btn-secondary" id="btn-local">Local 2-player</button>
+
+    <button class="btn btn-secondary" id="btn-build">Build board</button>
+
+    <div id="game-code-display"></div>
+  </div>
+
+  <!-- ── Board Builder ── -->
+  <div id="builder" style="display:none;">
+
+    <div id="builder-header">
+      <h2>Build your board</h2>
+      <div id="points-display">Points remaining: <span id="points-used">39</span> / 39</div>
+    </div>
+
+    <div id="builder-board"></div>
+
+    <div id="card-tray">
+      <p>Drag a card onto the board to place it — click a piece to remove it</p>
+      <div id="cards-container"></div>
+    </div>
+
+    <div id="builder-actions">
+      <button class="btn btn-secondary" id="btn-builder-back">Cancel</button>
+      <button class="btn btn-primary" id="btn-builder-save">Save board</button>
+    </div>
+
+  </div>
+
+  <!-- ── Game ── -->
+  <div id="game" style="display:none;">
+
+    <div id="status-bar">White to move</div>
+
+    <div id="game-layout">
+
+      <!-- Board -->
+      <div id="board-container">
+        <div id="board"></div>
+      </div>
+
+      <!-- Side panel -->
+      <div id="panel">
+
+        <div class="player-card" id="card-b">
+          <div class="icon">♟</div>
+          <div class="name">Black</div>
+          <div class="captured" id="cap-w"></div>
+        </div>
+
+        <div class="player-card active" id="card-w">
+          <div class="icon">♙</div>
+          <div class="name">White</div>
+          <div class="captured" id="cap-b"></div>
+        </div>
+
+        <button class="btn btn-secondary" id="btn-new-game">Back to menu</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Promotion modal ── -->
+  <div id="promo-overlay">
+    <div id="promo-box">
+      <p>Promote your pawn</p>
+      <div id="promo-choices"></div>
+    </div>
+  </div>
+
+  <!-- ── Message overlay ── -->
+  <div id="message-overlay">
+    <div id="message-box">
+      <h2 id="msg-title"></h2>
+      <p id="msg-body"></p>
+      <button class="btn btn-primary" onclick="document.getElementById('message-overlay').classList.remove('show')">OK</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="chess.js"></script>
+
+</body>
+</html>
